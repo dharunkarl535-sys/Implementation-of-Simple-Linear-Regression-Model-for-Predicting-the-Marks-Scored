@@ -16,8 +16,6 @@ To write a program to predict the marks scored by a student using the simple lin
 ## Program:
 ```
 
-*/
-
 import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -76,8 +74,18 @@ print("Root Mean Squared Error:", rmse)
 
 
 ## Output:
-<img width="257" height="145" alt="362732326-1b416b49-683a-41df-85cf-af0ad4fc6d66" src="https://github.com/user-attachments/assets/a6281b63-8bed-46b3-82c6-dff265909b3f" />
+\Dataset: Hours_Studied Marks_Scored 0 1 35 1 2 40 2 3 50 3 4 55 4 5 60 5 6 65 6 7 70 7 8 75 8 9 80 9 10 85
 
+Model Evaluation:
+
+Slope (m): 5.387931034482759
+
+Intercept (c): 32.241379310344826
+
+Mean Squared Error: 4.820340368608786
+
+R² Score: 0.9879491490784781
+<img width="562" height="455" alt="530284843-d0c8bf8e-7031-4ee5-a457-a5eac9adfc71" src="https://github.com/user-attachments/assets/e178f4c9-5b80-47bf-a572-bcd6c02013a4" />
 
 ## Result:
 Thus the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
