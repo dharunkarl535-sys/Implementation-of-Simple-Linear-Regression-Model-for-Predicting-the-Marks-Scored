@@ -80,7 +80,8 @@ Slope (m): 5.387931034482759
 Intercept (c): 32.241379310344826
 Mean Squared Error: 4.820340368608786
 R² Score: 0.9879491490784781
-<img width="562" height="455" alt="bdda5dd6-f6a6-41ad-980a-ec2c0f1c1940" src="https://github.com/user-attachments/assets/84ccfc00-0db5-427d-abdc-08b8539637fe" />
+![Uploading 5f41662c-db98-467c-9308-e692cdffea0c.png…]()
+
 Enter number of study hours: 2
 Predicted Marks for studying 2.0 hours = 43.02
 
