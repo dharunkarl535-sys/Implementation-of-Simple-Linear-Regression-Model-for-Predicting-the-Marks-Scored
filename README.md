@@ -15,66 +15,68 @@ To write a program to predict the marks scored by a student using the simple lin
 
 ## Program:
 ```
-/*import numpy as np
+
+*/
+
+import numpy as np
 import pandas as pd
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.linear_model import LinearRegression
 
-data = {
-    'Hours_Studied': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    'Marks_Scored':  [35, 40, 50, 55, 60, 65, 70, 75, 80, 85]
-}
+df = pd.read_csv("/content/student_scores.csv")
 
-df = pd.DataFrame(data)
-print("Dataset:")
-print(df)
+print(df.tail())
+print(df.head())
+df.info()
 
-X = df[['Hours_Studied']]   # Feature (2D)
-y = df['Marks_Scored']      # Target (1D)
+x = df.iloc[:, :-1].values  # Hours
+y = df.iloc[:,:-1].values   # Scores
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=1/3, random_state=0)
 
-model = LinearRegression()
-model.fit(X_train, y_train)
+print("X_Training:", x_train)
+print("X_Test:", x_test)
+print("Y_Training:", y_train)
+print("Y_Test:", y_test)
 
-y_pred = model.predict(X_test)
+reg = LinearRegression()
+reg.fit(x_train, y_train)
 
-print("\nModel Evaluation:")
-print("Slope (m):", model.coef_[0])
-print("Intercept (c):", model.intercept_)
-print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
-print("R² Score:", r2_score(y_test, y_pred))
+Y_pred = reg.predict(x_test)
 
-plt.scatter(X, y, color='blue', label='Actual Data')
-plt.plot(X, model.predict(X), color='red', label='Regression Line')
-plt.xlabel('Hours Studied')
-plt.ylabel('Marks Scored')
-plt.title('Simple Linear Regression: Hours vs Marks')
-plt.legend()
+print("Predicted Scores:", Y_pred)
+print("Actual Scores:", y_test)
+
+a = Y_pred - y_test
+print("Difference (Predicted - Actual):", a)
+
+plt.scatter(x_train, y_train, color="green")
+plt.plot(x_train, reg.predict(x_train), color="red")
+plt.title('Training set (Hours vs Scores)')
+plt.xlabel("Hours")
+plt.ylabel("Scores")
 plt.show()
 
-hours = float(input("\nEnter number of study hours: "))
-predicted_marks = model.predict([[hours]])
-print(f"Predicted Marks for studying {hours} hours = {predicted_marks[0]:.2f}")
-*/
+plt.scatter(x_test, y_test, color="blue")
+plt.plot(x_test, reg.predict(x_test), color="green")
+plt.title('Testing set (Hours vs Scores)')
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+
+mae = mean_absolute_error(y_test, Y_pred)
+mse = mean_squared_error(y_test, Y_pred)
+rmse = np.sqrt(mse)
+
+print("Mean Absolute Error:", mae)
+print("Mean Squared Error:", mse)
+print("Root Mean Squared Error:", rmse)
 
 
 ## Output:
-Dataset:
-   Hours_Studied  Marks_Scored
-0              1            35
-1              2            40
-2              3            50
-3              4            55
-4              5            60
-5              6            65
-6              7            70
-7              8            75
-8              9            80
-9             10            85
-<img width="1920" height="1080" alt="Screenshot (49)" src="https://github.com/user-attachments/assets/d7686e66-95a5-4a04-926a-798f0f39ac90" />
+<img width="257" height="145" alt="362732326-1b416b49-683a-41df-85cf-af0ad4fc6d66" src="https://github.com/user-attachments/assets/a6281b63-8bed-46b3-82c6-dff265909b3f" />
 
 
 ## Result:
