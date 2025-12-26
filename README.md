@@ -74,16 +74,7 @@ Dataset:
 7              8            75
 8              9            80
 9             10            85
-
-Model Evaluation:
-Slope (m): 5.387931034482759
-Intercept (c): 32.241379310344826
-Mean Squared Error: 4.820340368608786
-R² Score: 0.9879491490784781
-![Uploading 5f41662c-db98-467c-9308-e692cdffea0c.png…]()
-
-Enter number of study hours: 2
-Predicted Marks for studying 2.0 hours = 43.02
+<img width="1920" height="1080" alt="Screenshot (49)" src="https://github.com/user-attachments/assets/d7686e66-95a5-4a04-926a-798f0f39ac90" />
 
 
 ## Result:
