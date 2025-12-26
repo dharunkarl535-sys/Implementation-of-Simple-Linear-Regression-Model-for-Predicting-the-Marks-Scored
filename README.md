@@ -15,60 +15,74 @@ To write a program to predict the marks scored by a student using the simple lin
 
 ## Program:
 ```
-/*
-Program to implement the 
+/*import numpy as np
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error,mean_squared_error
-df=pd.read_csv('student_scores.csv')
-print(df)
-df.head(0)
-df.tail(0)
-print(df.head())
-print(df.tail())
-x = df.iloc[:,:-1].values
-print(x)
-y = df.iloc[:,1].values
-print(y)
-from sklearn.model_selection import train_test_split
-x_train, x_test ,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
 from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(x_train,y_train)
-y_pred=regressor.predict(x_test)
-print(y_pred)
-print(y_test)
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
 
-#Graph plot for training data
-plt.scatter(x_train,y_train,color='black')
-plt.plot(x_train,regressor.predict(x_train),color='blue')
-plt.title ("Hours vs Scores(Training set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
+data = {
+    'Hours_Studied': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Marks_Scored':  [35, 40, 50, 55, 60, 65, 70, 75, 80, 85]
+}
+
+df = pd.DataFrame(data)
+print("Dataset:")
+print(df)
+
+X = df[['Hours_Studied']]   # Feature (2D)
+y = df['Marks_Scored']      # Target (1D)
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+print("\nModel Evaluation:")
+print("Slope (m):", model.coef_[0])
+print("Intercept (c):", model.intercept_)
+print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
+print("R² Score:", r2_score(y_test, y_pred))
+
+plt.scatter(X, y, color='blue', label='Actual Data')
+plt.plot(X, model.predict(X), color='red', label='Regression Line')
+plt.xlabel('Hours Studied')
+plt.ylabel('Marks Scored')
+plt.title('Simple Linear Regression: Hours vs Marks')
+plt.legend()
 plt.show()
 
-#Graph plot for test data
-plt.scatter(x_test ,y_test,color='black')
-plt.plot(x_train,regressor.predict(x_train),color='Red')
-plt.title("Hours vs Scores(Testing set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-
-mse=mean_squared_error(y_test,y_pred)
-print('MSE= ',mse)
-mae=mean_absolute_error(y_test,y_pred)
-print('MAE= ',mae)
-rmse=np.sqrt(mse)
-print("RMSE= ",rmse)
-print('thank you')
+hours = float(input("\nEnter number of study hours: "))
+predicted_marks = model.predict([[hours]])
+print(f"Predicted Marks for studying {hours} hours = {predicted_marks[0]:.2f}")
 */
 
 
 ## Output:
-!<img width="804" height="690" alt="377304369-e931ed7d-c168-4ee8-9b36-2e0c088ad023" src="https://github.com/user-attachments/assets/e25fd365-c05b-41fe-8229-36a365872174" />
+Dataset:
+   Hours_Studied  Marks_Scored
+0              1            35
+1              2            40
+2              3            50
+3              4            55
+4              5            60
+5              6            65
+6              7            70
+7              8            75
+8              9            80
+9             10            85
 
+Model Evaluation:
+Slope (m): 5.387931034482759
+Intercept (c): 32.241379310344826
+Mean Squared Error: 4.820340368608786
+R² Score: 0.9879491490784781
+<img width="562" height="455" alt="bdda5dd6-f6a6-41ad-980a-ec2c0f1c1940" src="https://github.com/user-attachments/assets/84ccfc00-0db5-427d-abdc-08b8539637fe" />
+Enter number of study hours: 2
+Predicted Marks for studying 2.0 hours = 43.02
 
 
 ## Result:
